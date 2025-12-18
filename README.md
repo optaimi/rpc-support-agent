@@ -1,34 +1,42 @@
-# QuickNode AI Support Agent ⚡🤖
+# Blockchain Support Agent ⚡🤖
 
-A production-ready diagnostic tool designed to automate "Tier 1 Support" for blockchain infrastructure. It intercepts raw JSON-RPC errors and uses **GPT-4.1-mini** to instantly draft technical, accurate responses for customers.
+A production-ready diagnostic tool designed to automate "Tier 1 Support" for blockchain infrastructure. It acts as a bridge between raw JSON-RPC errors and human-readable support tickets, using **GPT-4.1-mini** to instantly draft technical, accurate responses.
 
-![App Screenshot](https://via.placeholder.com/800x400?text=Blockchain+API+Support+Agent+Demo)
+![App Screenshot](https://via.placeholder.com/800x400?text=Blockchain+Support+Agent+Demo)
 
-## 🎯 Why I Built This
-In high-volume support environments, speed and accuracy are critical. I built this tool to demonstrate how we can use AI to bridge the gap between raw infrastructure errors and human-readable support tickets.
-
-### 📊 Benchmark Decision: Why GPT-4.1-mini?
-I benchmarked multiple models for this specific "JSON-RPC Root Cause Analysis" task.
-* **GPT-5.1:** High quality, but too slow (~18s latency).
-* **GPT-5-mini:** Struggled with strict JSON formatting.
-* **GPT-4.1-mini:** **The Winner.** It delivered 95% of the reasoning quality in **<2.5 seconds** and correctly identified edge cases (like Zero Address errors) that older models missed.
+## 🎯 Project Goal
+In high-volume support environments, engineers often spend time decoding standard EVM errors (like `-32000: execution reverted`). I built this tool to demonstrate how AI can:
+1.  **Intercept** the raw JSON error.
+2.  **Analyze** the context (Method + Error Code).
+3.  **Draft** a polite, technically accurate response in <3 seconds.
 
 ## 🚀 Key Features
-* **Fault Simulation:** One-click simulation of common user errors (e.g. `eth_estimateGas` from a zero-balance wallet).
-* **Intelligent Analysis:** Instantly translates cryptic error codes (e.g. `-32000: execution reverted`) into a "Root Cause" note for engineers and a "Polite Reply" for customers.
-* **Raw Debug View:** Allows support staff to inspect the raw JSON payload to verify the AI's findings.
-* **Production Ready:** Built with Type Hinting, Environment Security (.env), and Robust Error Handling.
+
+### 1. Dual Diagnostic Modes
+* **Fault Simulator:** One-click simulation of common blockchain errors to test the agent's reasoning.
+    * *Scenario A:* `eth_estimateGas` from a zero-balance wallet (Insufficient Funds).
+    * *Scenario B:* Smart Contract Revert (Execution Reverted).
+    * *Scenario C:* Invalid Gas Parameters (Intrinsic Gas Too Low).
+* **✍️ Manual Input Mode:** A "Utility Mode" that allows support engineers to paste **real raw error data** from actual customer tickets to get an instant analysis.
+
+### 2. Intelligent Analysis
+* Instantly translates cryptic error codes into a **"Root Cause"** internal note for the engineer.
+* Drafts a **"Client Reply"** that is empathetic, professional, and company-agnostic (signed simply as "Support Team").
+
+### 3. Security & Production Standards
+* **Credential Masking:** API keys and RPC endpoints are strictly hidden in the UI to prevent leaks during screen shares or demos.
+* **Environment Security:** All sensitive configuration is managed via `.env` files, never hardcoded.
 
 ## 🛠️ Tech Stack
 * **Frontend:** Streamlit (Python)
-* **Blockchain:** Ethereum JSON-RPC (QuickNode / Public LlamaNodes)
-* **AI Engine:** OpenAI GPT-4.1-mini (JSON Mode)
+* **Blockchain:** Ethereum JSON-RPC (Interacts with live nodes)
+* **AI Engine:** OpenAI GPT-4.1-mini (Optimized for JSON output & speed)
 
 ## 📦 Installation & Setup
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/optaimi/rpc-support-agent.git](https://github.com/optaimi/rpc-support-agent.git)
+    git clone [https://github.com/YOUR_USERNAME/rpc-support-agent.git](https://github.com/YOUR_USERNAME/rpc-support-agent.git)
     cd rpc-support-agent
     ```
 
@@ -41,8 +49,8 @@ I benchmarked multiple models for this specific "JSON-RPC Root Cause Analysis" t
     Create a file named `.env` in the root folder:
     ```ini
     OPENAI_API_KEY="sk-..."
-    # Optional: Use your own QuickNode Endpoint (defaults to public if omitted)
-    QUICKNODE_RPC_URL="[https://your-endpoint.quiknode.pro/](https://your-endpoint.quiknode.pro/)..."
+    # Your JSON-RPC Endpoint (e.g., QuickNode, Alchemy, or Public)
+    QUICKNODE_RPC_URL="[https://eth.llamarpc.com](https://eth.llamarpc.com)"
     ```
 
 4.  **Run the App**
@@ -50,14 +58,18 @@ I benchmarked multiple models for this specific "JSON-RPC Root Cause Analysis" t
     streamlit run app.py
     ```
 
-## 🧪 How to Test (Demo Flow)
-1.  Launch the app.
-2.  In the left column, click **🔴 Trigger Failed Transaction**.
-3.  This simulates an `eth_estimateGas` call from the "Zero Address" (`0x00...00`).
-4.  Watch the AI Agent in the right column automatically:
-    * Detect the `-32000` error.
-    * Analyse the root cause (Invalid Sender/No Funds).
-    * Draft a support ticket response signed by the "Support Team".
+## 🧪 How to Use
+
+### Simulator Mode (Demo)
+1.  Select a scenario from the dropdown (e.g., **💰 Insufficient Funds**).
+2.  Click **🔴 Trigger Simulation**.
+3.  The app sends a live request to the RPC node, catches the specific error, and passes it to the AI.
+4.  View the **Internal Note** and the **Drafted Reply**.
+
+### Manual Mode (Real World)
+1.  Select **✍️ Manual Error Input** from the dropdown.
+2.  Paste an Error Code (e.g., `-32601`) and Message (e.g., `Method not found`).
+3.  Click **🧠 Analyse Manual Error** to see how the agent handles custom data.
 
 ---
-*Developed as a proof-of-concept for the QuickNode Support Engineering role.*
+*Developed as a portfolio project to demonstrate AI integration in Support Engineering workflows.*
