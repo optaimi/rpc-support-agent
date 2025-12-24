@@ -36,7 +36,7 @@ In high-volume support environments, engineers often spend time decoding standar
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/rpc-support-agent.git](https://github.com/YOUR_USERNAME/rpc-support-agent.git)
+    git clone [https://github.com/optaimi/rpc-support-agent
     cd rpc-support-agent
     ```
 
@@ -50,7 +50,7 @@ In high-volume support environments, engineers often spend time decoding standar
     ```ini
     OPENAI_API_KEY="sk-..."
     # Your JSON-RPC Endpoint (e.g., QuickNode, Alchemy, or Public)
-    QUICKNODE_RPC_URL="[https://eth.llamarpc.com](https://eth.llamarpc.com)"
+    QUICKNODE_RPC_URL="https://eth.llamarpc.com"
     ```
 
 4.  **Run the App**
@@ -72,4 +72,3 @@ In high-volume support environments, engineers often spend time decoding standar
 3.  Click **🧠 Analyse Manual Error** to see how the agent handles custom data.
 
 ---
-*Developed as a portfolio project to demonstrate AI integration in Support Engineering workflows.*
